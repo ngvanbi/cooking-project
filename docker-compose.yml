@@ -1,0 +1,32 @@
+version: '3.4'
+
+services:
+  back-end:
+    image: cooking-project
+    build: .
+    environment:
+      NODE_ENV: production
+    ports:
+      - "3000:3000"
+
+  db:
+    image: postgres:12
+    restart: always
+    environment:
+      - POSTGRES_DB: cooking
+      - POSTGRES_USER: admin
+      - POSTGRES_PASSWORD: admin
+    ports:
+      - "5432:5432"
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+  redis:
+    restart: "always"
+    image: redis:latest
+    ports:
+      - "26301:6379"

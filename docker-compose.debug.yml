@@ -1,0 +1,45 @@
+version: '3.4'
+
+services:
+  back-end:
+    container_name: back-end
+    build:
+      context: ./backend/
+      dockerfile: Dockerfile
+    environment:
+      NODE_ENV: development
+    ports:
+      - 8080:3001
+
+  front-end:
+    container_name: front-end
+    build:
+      context: ./frontend/
+      dockerfile: Dockerfile
+    environment:
+      NODE_ENV: development
+    ports:
+      - 3000:3000
+
+  db:
+    image: postgres:12
+    restart: always
+    environment:
+      - POSTGRES_DB: cooking
+      - POSTGRES_USER: admin
+      - POSTGRES_PASSWORD: admin
+    ports:
+      - 25401:5432
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 28081:8080
+
+
+  redis:
+    restart: "always"
+    image: redis:latest
+    ports:
+      - 26301:6379
