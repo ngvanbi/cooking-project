@@ -1,23 +1,21 @@
-import App from 'next/app';
+import { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
-import store from '../store/store';
 import Head from 'next/head';
+import store from '../store/store';
 
-class MyApp extends App {
-  render(): JSX.Element {
-    const { Component, pageProps } = this.props
-    return (
-      <Provider store={store}>
-        <Head>
-          <title>Cooking</title>
-        </Head>
-        <Component {...pageProps} />
-      </Provider>
-    );
-  }
+function App({ Component, pageProps }: AppProps): JSX.Element {
+  return (
+    <Provider store={store}>
+      <Head>
+        <title>Cooking</title>
+      </Head>
+      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+      <Component {...pageProps} />
+    </Provider>
+  );
 }
 
-MyApp.getInitialProps = async ({ Component, ctx }) => {
+App.getInitialProps = async ({ Component, ctx }) => {
   let pageProps = {};
 
   if (Component.getInitialProps) {
@@ -27,4 +25,4 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
   return { pageProps };
 };
 
-export default MyApp;
+export default App;
