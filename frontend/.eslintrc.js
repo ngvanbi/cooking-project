@@ -14,7 +14,7 @@ module.exports = {
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
-    React: "writable"
+    React: 'writable',
   },
   parser: '@typescript-eslint/parser', // Specifies the ESLint parser
   parserOptions: {
@@ -47,6 +47,8 @@ module.exports = {
       },
     ],
     'prettier/prettier': 'error',
-    "react/react-in-jsx-scope": "off"
+    'react/react-in-jsx-scope': 'off',
+    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
+    'react/jsx-one-expression-per-line': 'off',
   },
 };
