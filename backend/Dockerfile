@@ -11,6 +11,6 @@ RUN yarn install --production --silent && mv node_modules ../
 # Copying source files
 COPY . .
 
-EXPOSE 3001
+EXPOSE 5000
 
 CMD npm start
